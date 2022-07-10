@@ -1,3 +1,8 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local clickerGUI = Instance.new("TextLabel")
@@ -12,10 +17,15 @@ local autorebirthon = Instance.new("TextButton")
 local autorebirthoff = Instance.new("TextButton")
 local speedupgrade = Instance.new("TextButton")
 local autobuyegglabel = Instance.new("TextLabel")
-local autobuyeggon = Instance.new("TextButton")
-local autobuyeggoff = Instance.new("TextButton")
+local fire = Instance.new("TextButton")
+local moon = Instance.new("TextButton")
 local teleportslabel = Instance.new("TextLabel")
-local ScrollingFrame = Instance.new("ScrollingFrame")
+local jumpupgrade = Instance.new("TextButton")
+local upgradeslabel = Instance.new("TextLabel")
+local clickmultiplier = Instance.new("TextButton")
+local cursordamage = Instance.new("TextButton")
+local health = Instance.new("TextButton")
+local petstorage = Instance.new("TextButton")
 local desert = Instance.new("TextButton")
 local winter = Instance.new("TextButton")
 local lava = Instance.new("TextButton")
@@ -30,22 +40,35 @@ local blocks = Instance.new("TextButton")
 local Future = Instance.new("TextButton")
 local dominus = Instance.new("TextButton")
 local infinity = Instance.new("TextButton")
-local moon = Instance.new("TextButton")
-local fire = Instance.new("TextButton")
-local upgradeslabel = Instance.new("TextLabel")
-local clickmultiplier = Instance.new("TextButton")
-local cursordamage = Instance.new("TextButton")
-local health = Instance.new("TextButton")
-local petstorage = Instance.new("TextButton")
-local jumpupgrade = Instance.new("TextButton")
+local winteregg = Instance.new("TextButton")
+local stormegg = Instance.new("TextButton")
+local spaceegg = Instance.new("TextButton")
+local oceanegg = Instance.new("TextButton")
+local moonegg = Instance.new("TextButton")
+local lavaEGG = Instance.new("TextButton")
+local infinityegg = Instance.new("TextButton")
+local forestegg = Instance.new("TextButton")
+local dominusegg = Instance.new("TextButton")
+local egg = Instance.new("TextButton")
+local candyegg = Instance.new("TextButton")
+local blocksegg = Instance.new("TextButton")
+local toxicegg = Instance.new("TextButton")
+local Futureegg = Instance.new("TextButton")
+local Cityegg = Instance.new("TextButton")
+local fireegg = Instance.new("TextButton")
+local TextButton = Instance.new("TextButton")
+
+--Properties:
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Frame.Parent = ScreenGui
+Frame.Active = true
 Frame.BackgroundColor3 = Color3.fromRGB(72, 72, 72)
-Frame.Position = UDim2.new(0.339897871, 0, 0.0392749086, 0)
-Frame.Size = UDim2.new(0, 500, 0, 400)
+Frame.Draggable = true
+Frame.Position = UDim2.new(0.101385847, 180, 0.0817989111, -43)
+Frame.Size = UDim2.new(0, 800, 0, 550)
 Frame.Active = true
 Frame.Draggable = true
 
@@ -63,7 +86,7 @@ clickerGUI.TextWrapped = true
 Muqa.Name = "Muqa"
 Muqa.Parent = Frame
 Muqa.BackgroundColor3 = Color3.fromRGB(129, 129, 129)
-Muqa.Position = UDim2.new(0, 0, 0.0908333361, 0)
+Muqa.Position = UDim2.new(0, 0, 0.0671969727, 0)
 Muqa.Size = UDim2.new(0, 109, 0, 15)
 Muqa.Font = Enum.Font.SourceSans
 Muqa.Text = "Muqa#0081"
@@ -144,7 +167,7 @@ end)
 autorebirthlabel.Name = "autorebirth label"
 autorebirthlabel.Parent = Frame
 autorebirthlabel.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
-autorebirthlabel.Position = UDim2.new(0, 0, 0.289166659, 0)
+autorebirthlabel.Position = UDim2.new(0, 0, 0.241893932, 0)
 autorebirthlabel.Size = UDim2.new(0, 109, 0, 35)
 autorebirthlabel.Font = Enum.Font.SourceSans
 autorebirthlabel.Text = "Auto Rebirth"
@@ -156,7 +179,7 @@ autorebirthlabel.TextWrapped = true
 autorebirthon.Name = "autorebirth on"
 autorebirthon.Parent = Frame
 autorebirthon.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-autorebirthon.Position = UDim2.new(0.268000007, 0, 0.289166659, 0)
+autorebirthon.Position = UDim2.new(0.268000007, 0, 0.241893932, 0)
 autorebirthon.Size = UDim2.new(0, 150, 0, 35)
 autorebirthon.Font = Enum.Font.SourceSans
 autorebirthon.Text = ""
@@ -176,7 +199,7 @@ end)
 autorebirthoff.Name = "autorebirth off"
 autorebirthoff.Parent = Frame
 autorebirthoff.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-autorebirthoff.Position = UDim2.new(0.64200002, 0, 0.289166659, 0)
+autorebirthoff.Position = UDim2.new(0.64200002, 0, 0.241893932, 0)
 autorebirthoff.Size = UDim2.new(0, 150, 0, 35)
 autorebirthoff.Font = Enum.Font.SourceSans
 autorebirthoff.Text = ""
@@ -197,7 +220,7 @@ speedupgrade.TextColor3 = Color3.fromRGB(0, 0, 0)
 speedupgrade.TextSize = 14.000
 speedupgrade.MouseButton1Down:Connect(function()
 	do
-local args = {
+		local args = {
 			[1] = "WalkSpeed"
 		}
 
@@ -209,7 +232,7 @@ end)
 autobuyegglabel.Name = "autobuyegg label"
 autobuyegglabel.Parent = Frame
 autobuyegglabel.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
-autobuyegglabel.Position = UDim2.new(0, 0, 0.413333356, 0)
+autobuyegglabel.Position = UDim2.new(0, 0, 0.369697005, 0)
 autobuyegglabel.Size = UDim2.new(0, 109, 0, 35)
 autobuyegglabel.Font = Enum.Font.SourceSans
 autobuyegglabel.Text = "Auto Buy Egg (common egg)"
@@ -218,327 +241,30 @@ autobuyegglabel.TextScaled = true
 autobuyegglabel.TextSize = 14.000
 autobuyegglabel.TextWrapped = true
 
-autobuyeggon.Name = "autobuyegg on"
-autobuyeggon.Parent = Frame
-autobuyeggon.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-autobuyeggon.Position = UDim2.new(0.268000007, 0, 0.413333356, 0)
-autobuyeggon.Size = UDim2.new(0, 150, 0, 35)
-autobuyeggon.Font = Enum.Font.SourceSans
-autobuyeggon.Text = ""
-autobuyeggon.TextColor3 = Color3.fromRGB(0, 0, 0)
-autobuyeggon.TextSize = 14.000
-autobuyeggon.MouseButton1Down:Connect(function()
-	_G.buyegg = true
-	spawn(function()
-		while _G.buyegg == true do
-			local args = {[1] = "basic"}
-			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
-			wait()
-		end	
-	end)
-end)
-
-autobuyeggoff.Name = "autobuyegg off"
-autobuyeggoff.Parent = Frame
-autobuyeggoff.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-autobuyeggoff.Position = UDim2.new(0.64200002, 0, 0.413333356, 0)
-autobuyeggoff.Size = UDim2.new(0, 150, 0, 35)
-autobuyeggoff.Font = Enum.Font.SourceSans
-autobuyeggoff.Text = ""
-autobuyeggoff.TextColor3 = Color3.fromRGB(0, 0, 0)
-autobuyeggoff.TextSize = 14.000
-autobuyeggoff.MouseButton1Down:Connect(function()
-	_G.buyegg = false
-end)
-
-teleportslabel.Name = "teleports label"
-teleportslabel.Parent = Frame
-teleportslabel.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
-teleportslabel.Position = UDim2.new(0, 0, 0.535000026, 0)
-teleportslabel.Size = UDim2.new(0, 109, 0, 35)
-teleportslabel.Font = Enum.Font.SourceSans
-teleportslabel.Text = "Teleports"
-teleportslabel.TextColor3 = Color3.fromRGB(0, 0, 0)
-teleportslabel.TextScaled = true
-teleportslabel.TextSize = 14.000
-teleportslabel.TextWrapped = true
-
-ScrollingFrame.Parent = Frame
-ScrollingFrame.Active = true
-ScrollingFrame.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
-ScrollingFrame.Position = UDim2.new(0.268000007, 0, 0.534999847, 0)
-ScrollingFrame.Size = UDim2.new(0, 337, 0, 82)
-
-desert.Name = "desert"
-desert.Parent = ScrollingFrame
-desert.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-desert.Size = UDim2.new(0, 324, 0, 35)
-desert.Font = Enum.Font.SourceSans
-desert.Text = "desert"
-desert.TextColor3 = Color3.fromRGB(0, 0, 0)
-desert.TextSize = 14.000
-desert.MouseButton1Down:Connect(function()
+fire.Name = "fire"
+fire.Parent = Frame
+fire.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+fire.Position = UDim2.new(0.866250038, 0, 0.595151484, 0)
+fire.Size = UDim2.new(0, 80, 0, 35)
+fire.Font = Enum.Font.SourceSans
+fire.Text = "fire"
+fire.TextColor3 = Color3.fromRGB(0, 0, 0)
+fire.TextSize = 14.000
+fire.MouseButton1Down:Connect(function()
 	function teleportTO(placeCFrame)
 		local plr = game.Players.LocalPlayer
 		if plr.Character then
 			plr.Character.HumanoidRootPart.CFrame = placeCFrame
 		end
 	end
-	teleportTO(game:GetService("Workspace").Worlds.Desert.Teleport.CFrame)
-end)
-
-winter.Name = "winter"
-winter.Parent = ScrollingFrame
-winter.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-winter.Position = UDim2.new(0, 0, 0.64958328, 0)
-winter.Size = UDim2.new(0, 324, 0, 35)
-winter.Font = Enum.Font.SourceSans
-winter.Text = "winter"
-winter.TextColor3 = Color3.fromRGB(0, 0, 0)
-winter.TextSize = 14.000
-winter.MouseButton1Down:Connect(function()
-	function teleportTO(placeCFrame)
-		local plr = game.Players.LocalPlayer
-		if plr.Character then
-			plr.Character.HumanoidRootPart.CFrame = placeCFrame
-		end
-	end
-	teleportTO(game:GetService("Workspace").Worlds.Winter.Teleport.CFrame)
-end)
-
-lava.Name = "lava"
-lava.Parent = ScrollingFrame
-lava.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-lava.Position = UDim2.new(0, 0, 0.606249988, 0)
-lava.Size = UDim2.new(0, 324, 0, 35)
-lava.Font = Enum.Font.SourceSans
-lava.Text = "lava"
-lava.TextColor3 = Color3.fromRGB(0, 0, 0)
-lava.TextSize = 14.000
-lava.MouseButton1Down:Connect(function()
-	function teleportTO(placeCFrame)
-		local plr = game.Players.LocalPlayer
-		if plr.Character then
-			plr.Character.HumanoidRootPart.CFrame = placeCFrame
-		end
-	end
-	teleportTO(game:GetService("Workspace").Worlds.Lava.Teleport.CFrame)
-end)
-
-Toxic.Name = "Toxic"
-Toxic.Parent = ScrollingFrame
-Toxic.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-Toxic.Position = UDim2.new(0, 0, 0.519999981, 0)
-Toxic.Size = UDim2.new(0, 324, 0, 35)
-Toxic.Font = Enum.Font.SourceSans
-Toxic.Text = "toxic"
-Toxic.TextColor3 = Color3.fromRGB(0, 0, 0)
-Toxic.TextSize = 14.000
-Toxic.MouseButton1Down:Connect(function()
-	function teleportTO(placeCFrame)
-		local plr = game.Players.LocalPlayer
-		if plr.Character then
-			plr.Character.HumanoidRootPart.CFrame = placeCFrame
-		end
-	end
-	teleportTO(game:GetService("Workspace").Worlds.Toxic.Teleport.CFrame)
-end)
-
-ocean.Name = "ocean"
-ocean.Parent = ScrollingFrame
-ocean.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-ocean.Position = UDim2.new(0, 0, 0.129999995, 0)
-ocean.Size = UDim2.new(0, 324, 0, 35)
-ocean.Font = Enum.Font.SourceSans
-ocean.Text = "ocean"
-ocean.TextColor3 = Color3.fromRGB(0, 0, 0)
-ocean.TextSize = 14.000
-ocean.MouseButton1Down:Connect(function()
-	function teleportTO(placeCFrame)
-		local plr = game.Players.LocalPlayer
-		if plr.Character then
-			plr.Character.HumanoidRootPart.CFrame = placeCFrame
-		end
-	end
-	teleportTO(game:GetService("Workspace").Worlds.Ocean.Teleport.CFrame)
-end)
-
-storm.Name = "storm"
-storm.Parent = ScrollingFrame
-storm.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-storm.Position = UDim2.new(0, 0, 0.0862499997, 0)
-storm.Size = UDim2.new(0, 324, 0, 35)
-storm.Font = Enum.Font.SourceSans
-storm.Text = "storm"
-storm.TextColor3 = Color3.fromRGB(0, 0, 0)
-storm.TextSize = 14.000
-storm.MouseButton1Down:Connect(function()
-	function teleportTO(placeCFrame)
-		local plr = game.Players.LocalPlayer
-		if plr.Character then
-			plr.Character.HumanoidRootPart.CFrame = placeCFrame
-		end
-	end
-	teleportTO(game:GetService("Workspace").Worlds.Storm.Teleport.CFrame)
-end)
-
-candy.Name = "candy"
-candy.Parent = ScrollingFrame
-candy.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-candy.Position = UDim2.new(0, 0, 0.476666659, 0)
-candy.Size = UDim2.new(0, 324, 0, 35)
-candy.Font = Enum.Font.SourceSans
-candy.Text = "candy"
-candy.TextColor3 = Color3.fromRGB(0, 0, 0)
-candy.TextSize = 14.000
-candy.MouseButton1Down:Connect(function()
-	function teleportTO(placeCFrame)
-		local plr = game.Players.LocalPlayer
-		if plr.Character then
-			plr.Character.HumanoidRootPart.CFrame = placeCFrame
-		end
-	end
-	teleportTO(game:GetService("Workspace").Worlds.Candy.Teleport.CFrame)
-end)
-
-space.Name = "space"
-space.Parent = ScrollingFrame
-space.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-space.Position = UDim2.new(0, 0, 0.433333337, 0)
-space.Size = UDim2.new(0, 324, 0, 35)
-space.Font = Enum.Font.SourceSans
-space.Text = "space"
-space.TextColor3 = Color3.fromRGB(0, 0, 0)
-space.TextSize = 14.000
-space.MouseButton1Down:Connect(function()
-	function teleportTO(placeCFrame)
-		local plr = game.Players.LocalPlayer
-		if plr.Character then
-			plr.Character.HumanoidRootPart.CFrame = placeCFrame
-		end
-	end
-	teleportTO(game:GetService("Workspace").Worlds.Space.Teleport.CFrame)
-end)
-
-forest.Name = "forest"
-forest.Parent = ScrollingFrame
-forest.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-forest.Position = UDim2.new(0, 0, 0.389999986, 0)
-forest.Size = UDim2.new(0, 324, 0, 35)
-forest.Font = Enum.Font.SourceSans
-forest.Text = "forest"
-forest.TextColor3 = Color3.fromRGB(0, 0, 0)
-forest.TextSize = 14.000
-forest.MouseButton1Down:Connect(function()
-	function teleportTO(placeCFrame)
-		local plr = game.Players.LocalPlayer
-		if plr.Character then
-			plr.Character.HumanoidRootPart.CFrame = placeCFrame
-		end
-	end
-	teleportTO(game:GetService("Workspace").Worlds.Forest.Teleport.CFrame)
-end)
-
-City.Name = "City"
-City.Parent = ScrollingFrame
-City.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-City.Position = UDim2.new(0, 0, 0.346666664, 0)
-City.Size = UDim2.new(0, 324, 0, 35)
-City.Font = Enum.Font.SourceSans
-City.Text = "city"
-City.TextColor3 = Color3.fromRGB(0, 0, 0)
-City.TextSize = 14.000
-City.MouseButton1Down:Connect(function()
-	function teleportTO(placeCFrame)
-		local plr = game.Players.LocalPlayer
-		if plr.Character then
-			plr.Character.HumanoidRootPart.CFrame = placeCFrame
-		end
-	end
-	teleportTO(game:GetService("Workspace").Worlds.City.Teleport.CFrame)
-end)
-
-blocks.Name = "blocks"
-blocks.Parent = ScrollingFrame
-blocks.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-blocks.Position = UDim2.new(0, 0, 0.259583324, 0)
-blocks.Size = UDim2.new(0, 324, 0, 35)
-blocks.Font = Enum.Font.SourceSans
-blocks.Text = "blocks"
-blocks.TextColor3 = Color3.fromRGB(0, 0, 0)
-blocks.TextSize = 14.000
-blocks.MouseButton1Down:Connect(function()
-	function teleportTO(placeCFrame)
-		local plr = game.Players.LocalPlayer
-		if plr.Character then
-			plr.Character.HumanoidRootPart.CFrame = placeCFrame
-		end
-	end
-	teleportTO(game:GetService("Workspace").Worlds.Blocks.Teleport.CFrame)
-end)
-
-Future.Name = "Future"
-Future.Parent = ScrollingFrame
-Future.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-Future.Position = UDim2.new(0, 0, 0.216250017, 0)
-Future.Size = UDim2.new(0, 324, 0, 35)
-Future.Font = Enum.Font.SourceSans
-Future.Text = "future"
-Future.TextColor3 = Color3.fromRGB(0, 0, 0)
-Future.TextSize = 14.000
-Future.MouseButton1Down:Connect(function()
-	function teleportTO(placeCFrame)
-		local plr = game.Players.LocalPlayer
-		if plr.Character then
-			plr.Character.HumanoidRootPart.CFrame = placeCFrame
-		end
-	end
-	teleportTO(game:GetService("Workspace").Worlds.Future.Teleport.CFrame)
-end)
-
-dominus.Name = "dominus"
-dominus.Parent = ScrollingFrame
-dominus.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-dominus.Position = UDim2.new(0, 0, 0.173749998, 0)
-dominus.Size = UDim2.new(0, 324, 0, 35)
-dominus.Font = Enum.Font.SourceSans
-dominus.Text = "dominus"
-dominus.TextColor3 = Color3.fromRGB(0, 0, 0)
-dominus.TextSize = 14.000
-dominus.MouseButton1Down:Connect(function()
-	function teleportTO(placeCFrame)
-		local plr = game.Players.LocalPlayer
-		if plr.Character then
-			plr.Character.HumanoidRootPart.CFrame = placeCFrame
-		end
-	end
-	teleportTO(game:GetService("Workspace").Worlds.Dominus.Teleport.CFrame)
-end)
-
-infinity.Name = "infinity"
-infinity.Parent = ScrollingFrame
-infinity.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-infinity.Position = UDim2.new(0, 0, 0.562916696, 0)
-infinity.Size = UDim2.new(0, 324, 0, 35)
-infinity.Font = Enum.Font.SourceSans
-infinity.Text = "infinity"
-infinity.TextColor3 = Color3.fromRGB(0, 0, 0)
-infinity.TextSize = 14.000
-infinity.MouseButton1Down:Connect(function()
-	function teleportTO(placeCFrame)
-		local plr = game.Players.LocalPlayer
-		if plr.Character then
-			plr.Character.HumanoidRootPart.CFrame = placeCFrame
-		end
-	end
-	teleportTO(game:GetService("Workspace").Worlds.Infinity.Teleport.CFrame)
+	teleportTO(game:GetService("Workspace").Worlds.Fire.Teleport.CFrame)
 end)
 
 moon.Name = "moon"
-moon.Parent = ScrollingFrame
-moon.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-moon.Position = UDim2.new(0, 0, 0.302916706, 0)
-moon.Size = UDim2.new(0, 324, 0, 35)
+moon.Parent = Frame
+moon.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+moon.Position = UDim2.new(0.766250014, 0, 0.597462118, 0)
+moon.Size = UDim2.new(0, 80, 0, 35)
 moon.Font = Enum.Font.SourceSans
 moon.Text = "moon"
 moon.TextColor3 = Color3.fromRGB(0, 0, 0)
@@ -553,23 +279,36 @@ moon.MouseButton1Down:Connect(function()
 	teleportTO(game:GetService("Workspace").Worlds.Moon.Teleport.CFrame)
 end)
 
-fire.Name = "fire"
-fire.Parent = ScrollingFrame
-fire.BackgroundColor3 = Color3.fromRGB(109, 109, 109)
-fire.Position = UDim2.new(0, 0, 0.043333333, 0)
-fire.Size = UDim2.new(0, 324, 0, 35)
-fire.Font = Enum.Font.SourceSans
-fire.Text = "fire"
-fire.TextColor3 = Color3.fromRGB(0, 0, 0)
-fire.TextSize = 14.000
-fire.MouseButton1Down:Connect(function()
-	function teleportTO(placeCFrame)
-		local plr = game.Players.LocalPlayer
-		if plr.Character then
-			plr.Character.HumanoidRootPart.CFrame = placeCFrame
-		end
+teleportslabel.Name = "teleports label"
+teleportslabel.Parent = Frame
+teleportslabel.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+teleportslabel.Position = UDim2.new(0, 0, 0.535000026, 0)
+teleportslabel.Size = UDim2.new(0, 109, 0, 35)
+teleportslabel.Font = Enum.Font.SourceSans
+teleportslabel.Text = "Teleports"
+teleportslabel.TextColor3 = Color3.fromRGB(0, 0, 0)
+teleportslabel.TextScaled = true
+teleportslabel.TextSize = 14.000
+teleportslabel.TextWrapped = true
+
+jumpupgrade.Name = "jump upgrade"
+jumpupgrade.Parent = Frame
+jumpupgrade.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+jumpupgrade.Position = UDim2.new(0.495999992, 0, 0.897499979, 0)
+jumpupgrade.Size = UDim2.new(0, 109, 0, 35)
+jumpupgrade.Font = Enum.Font.SourceSans
+jumpupgrade.Text = "jump upgrade"
+jumpupgrade.TextColor3 = Color3.fromRGB(0, 0, 0)
+jumpupgrade.TextSize = 14.000
+jumpupgrade.MouseButton1Down:Connect(function()
+	do
+		local args = {
+			[1] = "JumpPower"
+		}
+
+		game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.UpgradeService.BuyUpgrade:FireServer(unpack(args))
+
 	end
-	teleportTO(game:GetService("Workspace").Worlds.Fire.Teleport.CFrame)
 end)
 
 upgradeslabel.Name = "upgrades label"
@@ -595,7 +334,7 @@ clickmultiplier.TextColor3 = Color3.fromRGB(0, 0, 0)
 clickmultiplier.TextSize = 14.000
 clickmultiplier.MouseButton1Down:Connect(function()
 	do
-local args = {
+		local args = {
 			[1] = "ClickMultiply"
 		}
 
@@ -615,7 +354,7 @@ cursordamage.TextColor3 = Color3.fromRGB(0, 0, 0)
 cursordamage.TextSize = 14.000
 cursordamage.MouseButton1Down:Connect(function()
 	do
-local args = {
+		local args = {
 			[1] = "CursorDamage"
 		}
 
@@ -635,7 +374,7 @@ health.TextColor3 = Color3.fromRGB(0, 0, 0)
 health.TextSize = 14.000
 health.MouseButton1Down:Connect(function()
 	do
-local args = {
+		local args = {
 			[1] = "Health"
 		}
 
@@ -655,7 +394,7 @@ petstorage.TextColor3 = Color3.fromRGB(0, 0, 0)
 petstorage.TextSize = 14.000
 petstorage.MouseButton1Down:Connect(function()
 	do
-local args = {
+		local args = {
 			[1] = "PetStorage"
 		}
 
@@ -664,22 +403,665 @@ local args = {
 	end
 end)
 
-jumpupgrade.Name = "jump upgrade"
-jumpupgrade.Parent = Frame
-jumpupgrade.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
-jumpupgrade.Position = UDim2.new(0.495999992, 0, 0.897499979, 0)
-jumpupgrade.Size = UDim2.new(0, 109, 0, 35)
-jumpupgrade.Font = Enum.Font.SourceSans
-jumpupgrade.Text = "jump upgrade"
-jumpupgrade.TextColor3 = Color3.fromRGB(0, 0, 0)
-jumpupgrade.TextSize = 14.000
-jumpupgrade.MouseButton1Down:Connect(function()
-	do
-local args = {
-			[1] = "JumpPower"
-		}
-
-		game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.UpgradeService.BuyUpgrade:FireServer(unpack(args))
-
+desert.Name = "desert"
+desert.Parent = Frame
+desert.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+desert.Position = UDim2.new(0.266249985, 0, 0.530909061, 0)
+desert.Size = UDim2.new(0, 80, 0, 35)
+desert.Font = Enum.Font.SourceSans
+desert.Text = "desert"
+desert.TextColor3 = Color3.fromRGB(0, 0, 0)
+desert.TextSize = 14.000
+desert.MouseButton1Down:Connect(function()
+	function teleportTO(placeCFrame)
+		local plr = game.Players.LocalPlayer
+		if plr.Character then
+			plr.Character.HumanoidRootPart.CFrame = placeCFrame
+		end
 	end
+	teleportTO(game:GetService("Workspace").Worlds.Desert.Teleport.CFrame)
+end)
+
+winter.Name = "winter"
+winter.Parent = Frame
+winter.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+winter.Position = UDim2.new(0.467500001, 0, 0.533219635, 0)
+winter.Size = UDim2.new(0, 80, 0, 35)
+winter.Font = Enum.Font.SourceSans
+winter.Text = "winter"
+winter.TextColor3 = Color3.fromRGB(0, 0, 0)
+winter.TextSize = 14.000
+winter.MouseButton1Down:Connect(function()
+	function teleportTO(placeCFrame)
+		local plr = game.Players.LocalPlayer
+		if plr.Character then
+			plr.Character.HumanoidRootPart.CFrame = placeCFrame
+		end
+	end
+	teleportTO(game:GetService("Workspace").Worlds.Winter.Teleport.CFrame)
+end)
+
+lava.Name = "lava"
+lava.Parent = Frame
+lava.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+lava.Position = UDim2.new(0.167500049, 0, 0.533522666, 0)
+lava.Size = UDim2.new(0, 80, 0, 35)
+lava.Font = Enum.Font.SourceSans
+lava.Text = "lava"
+lava.TextColor3 = Color3.fromRGB(0, 0, 0)
+lava.TextSize = 14.000
+lava.MouseButton1Down:Connect(function()
+	function teleportTO(placeCFrame)
+		local plr = game.Players.LocalPlayer
+		if plr.Character then
+			plr.Character.HumanoidRootPart.CFrame = placeCFrame
+		end
+	end
+	teleportTO(game:GetService("Workspace").Worlds.Lava.Teleport.CFrame)
+end)
+
+Toxic.Name = "Toxic"
+Toxic.Parent = Frame
+Toxic.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+Toxic.Position = UDim2.new(0.567499995, 0, 0.532727182, 0)
+Toxic.Size = UDim2.new(0, 80, 0, 35)
+Toxic.Font = Enum.Font.SourceSans
+Toxic.Text = "toxic"
+Toxic.TextColor3 = Color3.fromRGB(0, 0, 0)
+Toxic.TextSize = 14.000
+Toxic.MouseButton1Down:Connect(function()
+	function teleportTO(placeCFrame)
+		local plr = game.Players.LocalPlayer
+		if plr.Character then
+			plr.Character.HumanoidRootPart.CFrame = placeCFrame
+		end
+	end
+	teleportTO(game:GetService("Workspace").Worlds.Toxic.Teleport.CFrame)
+end)
+
+ocean.Name = "ocean"
+ocean.Parent = Frame
+ocean.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+ocean.Position = UDim2.new(0.367499977, 0, 0.533636391, 0)
+ocean.Size = UDim2.new(0, 80, 0, 35)
+ocean.Font = Enum.Font.SourceSans
+ocean.Text = "ocean"
+ocean.TextColor3 = Color3.fromRGB(0, 0, 0)
+ocean.TextSize = 14.000
+ocean.MouseButton1Down:Connect(function()
+	function teleportTO(placeCFrame)
+		local plr = game.Players.LocalPlayer
+		if plr.Character then
+			plr.Character.HumanoidRootPart.CFrame = placeCFrame
+		end
+	end
+	teleportTO(game:GetService("Workspace").Worlds.Ocean.Teleport.CFrame)
+end)
+
+storm.Name = "storm"
+storm.Parent = Frame
+storm.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+storm.Position = UDim2.new(0.866249979, 0, 0.533522725, 0)
+storm.Size = UDim2.new(0, 80, 0, 35)
+storm.Font = Enum.Font.SourceSans
+storm.Text = "storm"
+storm.TextColor3 = Color3.fromRGB(0, 0, 0)
+storm.TextSize = 14.000
+storm.MouseButton1Down:Connect(function()
+	function teleportTO(placeCFrame)
+		local plr = game.Players.LocalPlayer
+		if plr.Character then
+			plr.Character.HumanoidRootPart.CFrame = placeCFrame
+		end
+	end
+	teleportTO(game:GetService("Workspace").Worlds.Storm.Teleport.CFrame)
+end)
+
+candy.Name = "candy"
+candy.Parent = Frame
+candy.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+candy.Position = UDim2.new(0.666249931, 0, 0.534848511, 0)
+candy.Size = UDim2.new(0, 80, 0, 35)
+candy.Font = Enum.Font.SourceSans
+candy.Text = "candy"
+candy.TextColor3 = Color3.fromRGB(0, 0, 0)
+candy.TextSize = 14.000
+candy.MouseButton1Down:Connect(function()
+	function teleportTO(placeCFrame)
+		local plr = game.Players.LocalPlayer
+		if plr.Character then
+			plr.Character.HumanoidRootPart.CFrame = placeCFrame
+		end
+	end
+	teleportTO(game:GetService("Workspace").Worlds.Candy.Teleport.CFrame)
+end)
+
+space.Name = "space"
+space.Parent = Frame
+space.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+space.Position = UDim2.new(0.267499983, 0, 0.596969724, 0)
+space.Size = UDim2.new(0, 80, 0, 35)
+space.Font = Enum.Font.SourceSans
+space.Text = "space"
+space.TextColor3 = Color3.fromRGB(0, 0, 0)
+space.TextSize = 14.000
+space.MouseButton1Down:Connect(function()
+	function teleportTO(placeCFrame)
+		local plr = game.Players.LocalPlayer
+		if plr.Character then
+			plr.Character.HumanoidRootPart.CFrame = placeCFrame
+		end
+	end
+	teleportTO(game:GetService("Workspace").Worlds.Space.Teleport.CFrame)
+end)
+
+forest.Name = "forest"
+forest.Parent = Frame
+forest.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+forest.Position = UDim2.new(0.766250014, 0, 0.533636391, 0)
+forest.Size = UDim2.new(0, 80, 0, 35)
+forest.Font = Enum.Font.SourceSans
+forest.Text = "forest"
+forest.TextColor3 = Color3.fromRGB(0, 0, 0)
+forest.TextSize = 14.000
+forest.MouseButton1Down:Connect(function()
+	function teleportTO(placeCFrame)
+		local plr = game.Players.LocalPlayer
+		if plr.Character then
+			plr.Character.HumanoidRootPart.CFrame = placeCFrame
+		end
+	end
+	teleportTO(game:GetService("Workspace").Worlds.Forest.Teleport.CFrame)
+end)
+
+City.Name = "City"
+City.Parent = Frame
+City.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+City.Position = UDim2.new(0.666249931, 0, 0.597575784, 0)
+City.Size = UDim2.new(0, 80, 0, 35)
+City.Font = Enum.Font.SourceSans
+City.Text = "city"
+City.TextColor3 = Color3.fromRGB(0, 0, 0)
+City.TextSize = 14.000
+City.MouseButton1Down:Connect(function()
+	function teleportTO(placeCFrame)
+		local plr = game.Players.LocalPlayer
+		if plr.Character then
+			plr.Character.HumanoidRootPart.CFrame = placeCFrame
+		end
+	end
+	teleportTO(game:GetService("Workspace").Worlds.City.Teleport.CFrame)
+end)
+
+blocks.Name = "blocks"
+blocks.Parent = Frame
+blocks.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+blocks.Position = UDim2.new(0.167500034, 0, 0.597765148, 0)
+blocks.Size = UDim2.new(0, 80, 0, 35)
+blocks.Font = Enum.Font.SourceSans
+blocks.Text = "blocks"
+blocks.TextColor3 = Color3.fromRGB(0, 0, 0)
+blocks.TextSize = 14.000
+blocks.MouseButton1Down:Connect(function()
+	function teleportTO(placeCFrame)
+		local plr = game.Players.LocalPlayer
+		if plr.Character then
+			plr.Character.HumanoidRootPart.CFrame = placeCFrame
+		end
+	end
+	teleportTO(game:GetService("Workspace").Worlds.Blocks.Teleport.CFrame)
+end)
+
+Future.Name = "Future"
+Future.Parent = Frame
+Future.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+Future.Position = UDim2.new(0.567499995, 0, 0.598068118, 0)
+Future.Size = UDim2.new(0, 80, 0, 35)
+Future.Font = Enum.Font.SourceSans
+Future.Text = "future"
+Future.TextColor3 = Color3.fromRGB(0, 0, 0)
+Future.TextSize = 14.000
+Future.MouseButton1Down:Connect(function()
+	function teleportTO(placeCFrame)
+		local plr = game.Players.LocalPlayer
+		if plr.Character then
+			plr.Character.HumanoidRootPart.CFrame = placeCFrame
+		end
+	end
+	teleportTO(game:GetService("Workspace").Worlds.Future.Teleport.CFrame)
+end)
+
+dominus.Name = "dominus"
+dominus.Parent = Frame
+dominus.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+dominus.Position = UDim2.new(0.366750002, 0, 0.59738636, 0)
+dominus.Size = UDim2.new(0, 80, 0, 35)
+dominus.Font = Enum.Font.SourceSans
+dominus.Text = "dominus"
+dominus.TextColor3 = Color3.fromRGB(0, 0, 0)
+dominus.TextSize = 14.000
+dominus.MouseButton1Down:Connect(function()
+	function teleportTO(placeCFrame)
+		local plr = game.Players.LocalPlayer
+		if plr.Character then
+			plr.Character.HumanoidRootPart.CFrame = placeCFrame
+		end
+	end
+	teleportTO(game:GetService("Workspace").Worlds.Dominus.Teleport.CFrame)
+end)
+
+infinity.Name = "infinity"
+infinity.Parent = Frame
+infinity.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+infinity.Position = UDim2.new(0.467500031, 0, 0.597462177, 0)
+infinity.Size = UDim2.new(0, 80, 0, 35)
+infinity.Font = Enum.Font.SourceSans
+infinity.Text = "infinity"
+infinity.TextColor3 = Color3.fromRGB(0, 0, 0)
+infinity.TextSize = 14.000
+infinity.MouseButton1Down:Connect(function()
+	function teleportTO(placeCFrame)
+		local plr = game.Players.LocalPlayer
+		if plr.Character then
+			plr.Character.HumanoidRootPart.CFrame = placeCFrame
+		end
+	end
+	teleportTO(game:GetService("Workspace").Worlds.Infinity.Teleport.CFrame)
+end)
+
+winteregg.Name = "winter egg"
+winteregg.Parent = Frame
+winteregg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+winteregg.Position = UDim2.new(0.467500001, 0, 0.369583279, 0)
+winteregg.Size = UDim2.new(0, 80, 0, 35)
+winteregg.Font = Enum.Font.SourceSans
+winteregg.Text = "winter"
+winteregg.TextColor3 = Color3.fromRGB(0, 0, 0)
+winteregg.TextSize = 14.000
+winteregg.MouseButton1Down:Connect(function()
+	_G.winteregg = true
+	spawn(function()
+		while _G.winteregg == true do
+			local args = {
+				[1] = "winter"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end
+	end)
+end)
+
+stormegg.Name = "storm egg"
+stormegg.Parent = Frame
+stormegg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+stormegg.Position = UDim2.new(0.866249979, 0, 0.368068159, 0)
+stormegg.Size = UDim2.new(0, 80, 0, 35)
+stormegg.Font = Enum.Font.SourceSans
+stormegg.Text = "storm"
+stormegg.TextColor3 = Color3.fromRGB(0, 0, 0)
+stormegg.TextSize = 14.000
+stormegg.MouseButton1Down:Connect(function()
+	_G.stormegg = true
+	spawn(function()
+		while _G.stormegg == true do
+			local args = {
+				[1] = "storm"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end
+	end)
+end)
+
+spaceegg.Name = "space egg"
+spaceegg.Parent = Frame
+spaceegg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+spaceegg.Position = UDim2.new(0.266249985, 0, 0.427878827, 0)
+spaceegg.Size = UDim2.new(0, 80, 0, 35)
+spaceegg.Font = Enum.Font.SourceSans
+spaceegg.Text = "space"
+spaceegg.TextColor3 = Color3.fromRGB(0, 0, 0)
+spaceegg.TextSize = 14.000
+spaceegg.MouseButton1Down:Connect(function()
+	_G.spaceegg = true
+	spawn(function()
+		while _G.spaceegg == true do 
+			local args = {
+				[1] = "space"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end
+	end)
+end)
+
+oceanegg.Name = "ocean egg"
+oceanegg.Parent = Frame
+oceanegg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+oceanegg.Position = UDim2.new(0.366249979, 0, 0.368181825, 0)
+oceanegg.Size = UDim2.new(0, 80, 0, 35)
+oceanegg.Font = Enum.Font.SourceSans
+oceanegg.Text = "ocean"
+oceanegg.TextColor3 = Color3.fromRGB(0, 0, 0)
+oceanegg.TextSize = 14.000
+oceanegg.MouseButton1Down:Connect(function()
+	_G.oceanegg = true
+	spawn(function()
+		while _G.oceanegg == true do
+			local args = {
+				[1] = "ocean"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end
+	end)
+end)
+
+moonegg.Name = "moon egg"
+moonegg.Parent = Frame
+moonegg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+moonegg.Position = UDim2.new(0.766250014, 0, 0.432007551, 0)
+moonegg.Size = UDim2.new(0, 80, 0, 35)
+moonegg.Font = Enum.Font.SourceSans
+moonegg.Text = "moon"
+moonegg.TextColor3 = Color3.fromRGB(0, 0, 0)
+moonegg.TextSize = 14.000
+moonegg.MouseButton1Down:Connect(function()
+	_G.moonegg = true
+	spawn(function()
+		while _G.moonegg == true do
+			local args = {
+				[1] = "moon"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end
+	end)
+end)
+
+lavaEGG.Name = "lava EGG"
+lavaEGG.Parent = Frame
+lavaEGG.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+lavaEGG.Position = UDim2.new(0.167500049, 0, 0.368068129, 0)
+lavaEGG.Size = UDim2.new(0, 80, 0, 35)
+lavaEGG.Font = Enum.Font.SourceSans
+lavaEGG.Text = "lava"
+lavaEGG.TextColor3 = Color3.fromRGB(0, 0, 0)
+lavaEGG.TextSize = 14.000
+lavaEGG.MouseButton1Down:Connect(function()
+	_G.lavaegg = true
+	spawn(function()
+		while _G.lavaegg == true do
+			local args = {
+				[1] = "lava"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end
+	end)
+end)
+
+infinityegg.Name = "infinity egg"
+infinityegg.Parent = Frame
+infinityegg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+infinityegg.Position = UDim2.new(0.467500031, 0, 0.432007611, 0)
+infinityegg.Size = UDim2.new(0, 80, 0, 35)
+infinityegg.Font = Enum.Font.SourceSans
+infinityegg.Text = "infinity"
+infinityegg.TextColor3 = Color3.fromRGB(0, 0, 0)
+infinityegg.TextSize = 14.000
+infinityegg.MouseButton1Down:Connect(function()
+	_G.infinityegg = true
+	spawn(function()
+		while _G.infinityegg == true do
+			local args = {
+				[1] = "infinity"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end
+	end)
+end)
+
+forestegg.Name = "forest egg"
+forestegg.Parent = Frame
+forestegg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+forestegg.Position = UDim2.new(0.766250014, 0, 0.368181825, 0)
+forestegg.Size = UDim2.new(0, 80, 0, 35)
+forestegg.Font = Enum.Font.SourceSans
+forestegg.Text = "forest"
+forestegg.TextColor3 = Color3.fromRGB(0, 0, 0)
+forestegg.TextSize = 14.000
+forestegg.MouseButton1Down:Connect(function()
+	_G.forestegg = true
+	spawn(function()
+		while _G.forestegg == true do
+			local args = {
+				[1] = "forest"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end
+	end)
+end)
+
+dominusegg.Name = "dominus egg"
+dominusegg.Parent = Frame
+dominusegg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+dominusegg.Position = UDim2.new(0.366750002, 0, 0.431931794, 0)
+dominusegg.Size = UDim2.new(0, 80, 0, 35)
+dominusegg.Font = Enum.Font.SourceSans
+dominusegg.Text = "dominus"
+dominusegg.TextColor3 = Color3.fromRGB(0, 0, 0)
+dominusegg.TextSize = 14.000
+dominusegg.MouseButton1Down:Connect(function()
+	_G.dominusegg = true
+	spawn(function()
+		while _G.dominusegg == true do
+			local args = {
+				[1] = "dominus"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end
+	end)
+end)
+
+egg.Name = "egg"
+egg.Parent = Frame
+egg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+egg.Position = UDim2.new(0.267499983, 0, 0.365454525, 0)
+egg.Size = UDim2.new(0, 80, 0, 35)
+egg.Font = Enum.Font.SourceSans
+egg.Text = "desert"
+egg.TextColor3 = Color3.fromRGB(0, 0, 0)
+egg.TextSize = 14.000
+egg.MouseButton1Down:Connect(function()
+	_G.egg = true
+	spawn(function()
+		while _G.egg == true do
+			local args = {
+				[1] = "desert"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()	
+		end
+	end)
+end)
+
+candyegg.Name = "candy egg"
+candyegg.Parent = Frame
+candyegg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+candyegg.Position = UDim2.new(0.666249931, 0, 0.369393945, 0)
+candyegg.Size = UDim2.new(0, 80, 0, 35)
+candyegg.Font = Enum.Font.SourceSans
+candyegg.Text = "candy"
+candyegg.TextColor3 = Color3.fromRGB(0, 0, 0)
+candyegg.TextSize = 14.000
+candyegg.MouseButton1Down:Connect(function()
+	_G.candyegg = true
+	spawn(function()
+		while _G.candyegg == true do
+			local args = {
+				[1] = "candy"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end
+	end)
+end)
+
+blocksegg.Name = "blocks egg"
+blocksegg.Parent = Frame
+blocksegg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+blocksegg.Position = UDim2.new(0.167500034, 0, 0.430492431, 0)
+blocksegg.Size = UDim2.new(0, 80, 0, 35)
+blocksegg.Font = Enum.Font.SourceSans
+blocksegg.Text = "blocks"
+blocksegg.TextColor3 = Color3.fromRGB(0, 0, 0)
+blocksegg.TextSize = 14.000
+blocksegg.MouseButton1Down:Connect(function()
+	_G.blocksegg = true
+	spawn(function()
+		while _G.blocksegg == true do
+			local args = {
+				[1] = "blocks"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end
+	end)
+end)
+
+toxicegg.Name = "toxic egg"
+toxicegg.Parent = Frame
+toxicegg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+toxicegg.Position = UDim2.new(0.567499995, 0, 0.369090825, 0)
+toxicegg.Size = UDim2.new(0, 80, 0, 35)
+toxicegg.Font = Enum.Font.SourceSans
+toxicegg.Text = "toxic"
+toxicegg.TextColor3 = Color3.fromRGB(0, 0, 0)
+toxicegg.TextSize = 14.000
+toxicegg.MouseButton1Down:Connect(function()
+	_G.toxicegg = true
+	spawn(function()
+		while _G.toxicegg == true do
+			local args = {
+				[1] = "toxic"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end
+	end)
+end)
+
+Futureegg.Name = "Future egg"
+Futureegg.Parent = Frame
+Futureegg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+Futureegg.Position = UDim2.new(0.564999998, 0, 0.432613552, 0)
+Futureegg.Size = UDim2.new(0, 80, 0, 35)
+Futureegg.Font = Enum.Font.SourceSans
+Futureegg.Text = "future"
+Futureegg.TextColor3 = Color3.fromRGB(0, 0, 0)
+Futureegg.TextSize = 14.000
+Futureegg.MouseButton1Down:Connect(function()
+	_G.Futureegg = true
+	spawn(function()
+		while _G.Futureegg == true do 
+			local args = {
+				[1] = "future"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end
+	end)
+end)
+
+Cityegg.Name = "City egg"
+Cityegg.Parent = Frame
+Cityegg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+Cityegg.Position = UDim2.new(0.664999902, 0, 0.432121217, 0)
+Cityegg.Size = UDim2.new(0, 80, 0, 35)
+Cityegg.Font = Enum.Font.SourceSans
+Cityegg.Text = "city"
+Cityegg.TextColor3 = Color3.fromRGB(0, 0, 0)
+Cityegg.TextSize = 14.000
+Cityegg.MouseButton1Down:Connect(function()
+	_G.Cityegg = true
+	spawn(function()
+		while _G.Cityegg == true do
+			local args = {
+				[1] = "city"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end
+	end)
+end)
+
+fireegg.Name = "fire egg"
+fireegg.Parent = Frame
+fireegg.BackgroundColor3 = Color3.fromRGB(166, 166, 166)
+fireegg.Position = UDim2.new(0.866250038, 0, 0.431515127, 0)
+fireegg.Size = UDim2.new(0, 80, 0, 35)
+fireegg.Font = Enum.Font.SourceSans
+fireegg.Text = "fire"
+fireegg.TextColor3 = Color3.fromRGB(0, 0, 0)
+fireegg.TextSize = 14.000
+fireegg.MouseButton1Down:Connect(function()
+	_G.fireegg = true
+	spawn(function()
+		while _G.fireegg == true do
+			local args = {
+				[1] = "fire"
+			}
+
+			game:GetService("ReplicatedStorage").Aero.AeroRemoteServices.EggService.Purchase:FireServer(unpack(args))
+			wait()
+		end 
+	end)
+end)
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+TextButton.Position = UDim2.new(-2.98023224e-08, 0, 0.432727277, 0)
+TextButton.Size = UDim2.new(0, 109, 0, 15)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "Stop Auto Buy Egg"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextScaled = true
+TextButton.TextSize = 14.000
+TextButton.TextWrapped = true
+TextButton.MouseButton1Down:Connect(function()
+	_G.winteregg = false
+	_G.stormegg = false
+	_G.spaceegg = false
+	_G.oceanegg = false
+	_G.moonegg = false
+	_G.lavaegg = false
+	_G.infinityegg = false	
+	_G.forestegg = false
+	_G.dominusegg = false
+	_G.egg = false
+	_G.candyegg = false
+	_G.blocksegg = false
+	_G.toxicegg = false
+	_G.Futureegg = false
+	_G.Cityegg = false
+	_G.fireegg = false
 end)
