@@ -1,8 +1,3 @@
--- Gui to Lua
--- Version: 3.2
-
--- Instances:
-
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local clickerGUI = Instance.new("TextLabel")
@@ -58,7 +53,7 @@ local Cityegg = Instance.new("TextButton")
 local fireegg = Instance.new("TextButton")
 local TextButton = Instance.new("TextButton")
 
---Properties:
+
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
