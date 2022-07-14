@@ -129,4 +129,3 @@ Section:NewToggle("I got bored", "surprise", function(state)
 		_G.madness = false
 	end
 end)
-
