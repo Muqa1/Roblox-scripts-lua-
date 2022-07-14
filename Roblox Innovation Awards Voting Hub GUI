@@ -30,12 +30,16 @@ Section:NewButton("Do everything (PLS READ DESCRIPTION)", "After the rejoin youl
 			pos = CFrame.new(14.25, 23.85, -116.83)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(3)
+			
+			pos = CFrame.new(0, 100, 0)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+			wait(5)
 
 			local TeleportService = game:GetService("TeleportService")
 			local placeID = 9377039667
 			local player = game:GetService("LocalPlayer")
 			TeleportService:Teleport(placeID, player)
-			wait(6)
+			
 
 		end
 	end
