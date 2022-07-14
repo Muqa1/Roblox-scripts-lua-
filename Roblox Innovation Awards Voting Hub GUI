@@ -4,9 +4,23 @@ local Window = Library.CreateLib("Roblox Innovation Awards Voting Hub GUI   Muqa
 
 local Tab = Window:NewTab("DO ALL")
 local Section = Tab:NewSection("Does Everything for u ")
-Section:NewButton("Do everything (PLS READ DESCRIPTION)", "After the rejoin youll have to do the voting manually", function()
+Section:NewButton("Do everything", "", function()
 	_G.laziness = true
 	if _G.laziness == true then do
+			
+			local args = {
+				[1] = {
+					["Best Content Update"] = "Jailbreak - Anniversary Update",
+					["People's Choice"] = "BedWars",
+					["Best Use of Avatar Fashion"] = "World // Zero",
+					["Video Star of the Year"] = "Flamingo"
+				},
+				[2] = workspace.VotingScreen
+			}
+
+			game:GetService("ReplicatedStorage").Events.RemoteEvents.Vote:FireServer(unpack(args))
+
+			
 			pos = CFrame.new(95.26, 167.67, -152.40)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(1)
@@ -30,59 +44,59 @@ Section:NewButton("Do everything (PLS READ DESCRIPTION)", "After the rejoin youl
 			pos = CFrame.new(26, 23.85, -116.83)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(0.2)
-			
+
 			pos = CFrame.new(25, 23.85, -116.83)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(0.2)
-			
+
 			pos = CFrame.new(24, 23.85, -116.83)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(0.2)
-			
+
 			pos = CFrame.new(23, 23.85, -116.83)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(0.2)
-			
+
 			pos = CFrame.new(22, 23.85, -116.83)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(0.2)
-			
+
 			pos = CFrame.new(21, 23.85, -116.83)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(0.2)
-			
+
 			pos = CFrame.new(20, 23.85, -116.83)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(0.2)
-			
+
 			pos = CFrame.new(19, 23.85, -116.83)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(0.2)
-			
+
 			pos = CFrame.new(18, 23.85, -116.83)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(0.2)
-			
+
 			pos = CFrame.new(17, 23.85, -116.83)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(0.2)
-			
+
 			pos = CFrame.new(16, 23.85, -116.83)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(0.2)
-			
+
 			pos = CFrame.new(15, 23.85, -116.83)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(0.2)
-			
+
 			pos = CFrame.new(14.25, 23.85, -116.83)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(3)
-			
+
 			pos = CFrame.new(0, 10000, 0)
 			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
 			wait(0.5)
-			
+
 
 			local TeleportService = game:GetService("TeleportService")
 			local placeID = 9377039667
