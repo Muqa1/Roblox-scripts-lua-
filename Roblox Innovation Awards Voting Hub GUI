@@ -1,0 +1,132 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+
+local Window = Library.CreateLib("Roblox Innovation Awards Voting Hub GUI   Muqa#0081", "Ocean")
+
+local Tab = Window:NewTab("DO ALL")
+local Section = Tab:NewSection("Does Everything for u ")
+Section:NewButton("Do everything (PLS READ DESCRIPTION)", "After the rejoin youll have to do the voting manually", function()
+	_G.laziness = true
+	if _G.laziness == true then do
+			pos = CFrame.new(95.26, 167.67, -152.40)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+			wait(1)
+
+			pos1 = CFrame.new(-2.85, 66.59, -198.28)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos1
+			wait(1)
+
+			pos2 = CFrame.new(-161.3, 40.31, -147.24)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos2
+			wait(1)
+
+			pos3 = CFrame.new(-343.21, 3.07, 355.72)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos3
+			wait(1)
+
+			pos4 = CFrame.new(156.03, 42.42, -51.53)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos4
+			wait(1)
+
+			pos = CFrame.new(14.25, 23.85, -116.83)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+			wait(3)
+
+			local TeleportService = game:GetService("TeleportService")
+			local placeID = 9377039667
+			local player = game:GetService("LocalPlayer")
+			TeleportService:Teleport(placeID, player)
+			wait(6)
+
+		end
+	end
+end)
+
+local Tab = Window:NewTab("Teleports")
+local Section = Tab:NewSection("Teleports")
+Section:NewButton("Teleports To The Valk", "", function()
+	pos = CFrame.new(95.26, 167.67, -152.40)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end)
+Section:NewButton("TP to the voting thing", "", function()
+	pos = CFrame.new(118.37, 6.63, -41.62)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end)
+Section:NewButton("Picks All Of The Shards", "", function()
+	_G.shards = true
+
+	if _G.shards == true then do
+			pos1 = CFrame.new(-2.85, 66.59, -198.28)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos1
+			wait(1)
+
+			pos2 = CFrame.new(-161.3, 40.31, -147.24)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos2
+			wait(1)
+
+			pos3 = CFrame.new(-343.21, 3.07, 355.72)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos3
+			wait(1)
+
+			pos4 = CFrame.new(156.03, 42.42, -51.53)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos4
+			wait(1)
+		end
+	end
+end)
+
+Section:NewButton("Photo thing", "", function()
+	pos = CFrame.new(14.25, 23.85, -116.83)
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+end)
+
+Section:NewButton("Rejoin (doesnt rejoin the same server)", "", function()
+	local TeleportService = game:GetService("TeleportService")
+	local placeID = 9377039667
+	local player = game:GetService("LocalPlayer")
+	TeleportService:Teleport(placeID, player)
+end)
+
+local Tab = Window:NewTab("Misc")
+local Section = Tab:NewSection("idk")
+Section:NewSlider("WalkSpeed", "", 500, 0, function(j) -- 500 (MaxValue) | 0 (MinValue)
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = j
+end)
+
+Section:NewButton("Reset", "A reset button since the game doesnt let u reset", function()
+	local player = game.Players.LocalPlayer
+	local char = player.Character
+	local humanoid = char:WaitForChild("Humanoid")
+	if true then do
+			humanoid.Health = 0
+		end
+	end
+end)
+
+Section:NewButton("Gib tp tool", "", function()
+	mouse = game.Players.LocalPlayer:GetMouse()
+	tool = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+	tool.Name = "Teleport tool"
+	tool.RequiresHandle = false
+	tool.Activated:Connect(function()
+		local pos = mouse.Hit +Vector3.new(0,2.5,0)
+		pos = CFrame.new(pos.x, pos.y, pos.z)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+	end)
+end)
+
+Section:NewToggle("I got bored", "surprise", function(state)
+	if state then
+		_G.madness = true
+		while _G.madness == true do
+			local pos1 = math.random(-1000,1000)
+			local pos2 = math.random(100,1000)
+			local pos3 = math.random(-1000,1000)
+			pos4 = CFrame.new(pos1, pos2, pos3)
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos4
+			wait()
+		end
+	else
+		_G.madness = false
+	end
+end)
+
