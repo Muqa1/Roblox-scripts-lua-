@@ -1,0 +1,406 @@
+game:GetService('Players').LocalPlayer.CameraMode = 'Classic'
+game:GetService('Players').LocalPlayer.DevEnableMouseLock = true
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("universal cheat GUI", "Ocean")
+
+_G.AimbotEnabled = true
+_G.TeamCheck = false -- If set to true then the script would only lock your aim at enemy team members.
+_G.AimPart = "Head" -- Where the aimbot script would lock at.
+_G.Sensitivity = 0 -- How many seconds it takes for the aimbot script to officially lock onto the target's aimpart.
+
+_G.CircleSides = 64 -- How many sides the FOV circle would have.
+_G.CircleColor = Color3.fromRGB(255, 255, 255) -- (RGB) Color that the FOV circle would appear as.
+_G.CircleTransparency = 0.7 -- Transparency of the circle.
+_G.CircleRadius = 80 -- The radius of the circle / FOV.
+_G.CircleFilled = false -- Determines whether or not the circle is filled.
+_G.CircleVisible = true -- Determines whether or not the circle is visible.
+_G.CircleThickness = 0 -- The thickness of the circle.
+
+
+--
+local Camera = workspace.CurrentCamera
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local LocalPlayer = Players.LocalPlayer
+local Holding = false
+--
+
+local Tab = Window:NewTab("Aimbot")
+local Section = Tab:NewSection("Aimbot")
+Section:NewToggle("Toggle aimbot", "", function(state)
+	if state then
+		_G.AimbotEnabled = true
+	else
+		_G.AimbotEnabled = false
+	end
+end)
+Section:NewToggle("Teamcheck", "", function(state)
+	if state then
+		_G.TeamCheck = true
+	else
+		_G.TeamCheck = false
+	end
+end)
+Section:NewDropdown("Aim part", "", {"Head", "HumanoidRootPart"}, function(currentOption)
+	_G.AimPart = currentOption
+end)
+Section:NewSlider("Aimbot sensitivity", "", 10, 0, function(s) 
+	_G.Sensitivity = s
+end)
+Section:NewColorPicker("Fov circle color", "", Color3.fromRGB(0,0,0), function(aimbotcolor)
+	_G.CircleColor = aimbotcolor
+end)
+Section:NewSlider("aimbot fov", "", 800, 1, function(d)
+	_G.CircleRadius = d
+end)
+Section:NewToggle("Circle visibility", "", function(state)
+	if state then
+		_G.CircleVisible = true
+	else
+		_G.CircleVisible = false
+	end
+end)
+
+Section:NewButton("hitbox expander", "May not work on all games or can be glitchy", function()
+	_G.Disabled = true
+end)
+Section:NewSlider("Hitbox expaner size", "", 500, 0, function(h) -- 500 (MaxValue) | 0 (MinValue)
+	_G.HeadSize = h
+end)
+
+
+_G.HeadSize = 50
+_G.Disabled = false
+game:GetService('RunService').RenderStepped:connect(function()
+	if _G.Disabled then
+		for i,v in next, game:GetService('Players'):GetPlayers() do
+			if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+				pcall(function()
+					v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+					v.Character.HumanoidRootPart.Transparency = 0.8
+					v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
+					v.Character.HumanoidRootPart.Material = "Force Field"
+					v.Character.HumanoidRootPart.CanCollide = false
+				end)
+			end
+		end
+	end
+end)
+
+
+local Camera = workspace.CurrentCamera
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local LocalPlayer = Players.LocalPlayer
+local Holding = false
+
+
+_G.CircleSides = 64 -- How many sides the FOV circle would have.
+_G.CircleTransparency = 1 -- Transparency of the circle.
+_G.CircleFilled = false -- Determines whether or not the circle is filled.
+_G.CircleThickness = 0 -- The thickness of the circle.
+
+local FOVCircle = Drawing.new("Circle")
+FOVCircle.Position = Vector2.new(Camera.ViewportSize.X / 2, Camera.ViewportSize.Y / 2)
+FOVCircle.Radius = _G.CircleRadius
+FOVCircle.Filled = _G.CircleFilled
+FOVCircle.Color = _G.CircleColor
+FOVCircle.Visible = _G.CircleVisible
+FOVCircle.Radius = _G.CircleRadius
+FOVCircle.Transparency = _G.CircleTransparency
+FOVCircle.NumSides = _G.CircleSides
+FOVCircle.Thickness = _G.CircleThickness
+
+local function GetClosestPlayer()
+	local MaximumDistance = _G.CircleRadius
+	local Target = nil
+
+	for _, v in next, Players:GetPlayers() do
+		if v.Name ~= LocalPlayer.Name then
+			if _G.TeamCheck == true then
+				if v.Team ~= LocalPlayer.Team then
+					if v.Character ~= nil then
+						if v.Character:FindFirstChild("HumanoidRootPart") ~= nil then
+							if v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("Humanoid").Health ~= 0 then
+								local ScreenPoint = Camera:WorldToScreenPoint(v.Character:WaitForChild("HumanoidRootPart", math.huge).Position)
+								local VectorDistance = (Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y) - Vector2.new(ScreenPoint.X, ScreenPoint.Y)).Magnitude
+
+								if VectorDistance < MaximumDistance then
+									Target = v
+								end
+							end
+						end
+					end
+				end
+			else
+				if v.Character ~= nil then
+					if v.Character:FindFirstChild("HumanoidRootPart") ~= nil then
+						if v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("Humanoid").Health ~= 0 then
+							local ScreenPoint = Camera:WorldToScreenPoint(v.Character:WaitForChild("HumanoidRootPart", math.huge).Position)
+							local VectorDistance = (Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y) - Vector2.new(ScreenPoint.X, ScreenPoint.Y)).Magnitude
+
+							if VectorDistance < MaximumDistance then
+								Target = v
+							end
+						end
+					end
+				end
+			end
+		end
+	end
+
+	return Target
+end
+
+UserInputService.InputBegan:Connect(function(Input)
+	if Input.UserInputType == Enum.UserInputType.MouseButton2 then
+		Holding = true
+	end
+end)
+
+UserInputService.InputEnded:Connect(function(Input)
+	if Input.UserInputType == Enum.UserInputType.MouseButton2 then
+		Holding = false
+	end
+end)
+
+RunService.RenderStepped:Connect(function()
+	FOVCircle.Position = Vector2.new(UserInputService:GetMouseLocation().X, UserInputService:GetMouseLocation().Y)
+	FOVCircle.Radius = _G.CircleRadius
+	FOVCircle.Filled = _G.CircleFilled
+	FOVCircle.Color = _G.CircleColor
+	FOVCircle.Visible = _G.CircleVisible
+	FOVCircle.Radius = _G.CircleRadius
+	FOVCircle.Transparency = _G.CircleTransparency
+	FOVCircle.NumSides = _G.CircleSides
+	FOVCircle.Thickness = _G.CircleThickness
+
+	if Holding == true and _G.AimbotEnabled == true then
+		TweenService:Create(Camera, TweenInfo.new(_G.Sensitivity, Enum.EasingStyle.Sine, Enum.EasingDirection.Out), {CFrame = CFrame.new(Camera.CFrame.Position, GetClosestPlayer().Character[_G.AimPart].Position)}):Play()
+	end
+end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+local Tab = Window:NewTab("Wallhack")
+local Section = Tab:NewSection("Wallhack")
+Section:NewToggle("fill use team color", "", function(state)
+	if state then
+		getgenv().filluseteamcolor = true
+	else
+		getgenv().filluseteamcolor = false
+	end
+end)
+Section:NewToggle("outline use team color", "", function(state)
+	if state then
+		getgenv().outlineuseteamcolor = true
+	else
+		getgenv().outlineuseteamcolor = false
+	end
+end)
+Section:NewColorPicker("custom fill color", "", Color3.fromRGB(0,0,0), function(esp1c)
+	getgenv().fillcolor = esp1c
+end)
+Section:NewColorPicker("custom outline color", "", Color3.fromRGB(0,0,0), function(esp2c)
+	getgenv().outlinecolor = esp2c	
+end)
+Section:NewButton("use local player", "", function()
+	getgenv().uselocalplayer = true
+end)
+Section:NewTextBox("fill transparency", "", function(txt21)
+	getgenv().filltrans = txt21
+end)
+Section:NewTextBox("outline transparency", "", function(txt2)
+	getgenv().outlinetrans = txt2
+end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+getgenv().enabled = true --Toggle on/off
+getgenv().uselocalplayer = false --Choose whether the ESP highlights LocalPlayer or not
+getgenv().filluseteamcolor = false --Toggle fill color using player team color on/off
+getgenv().outlineuseteamcolor = false --Toggle outline color using player team color on/off
+getgenv().fillcolor = Color3.new(0, 0, 0) --Change fill color, no need to edit if using team color
+getgenv().outlinecolor = Color3.new(1, 1, 1) --Change outline color, no need to edit if using team color
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+getgenv().filltrans = 0 --Change fill transparency
+getgenv().outlinetrans = 0 --Change outline transparency
+
+spawn(function()
+	while true do
+		local holder = game.CoreGui:FindFirstChild("ESPHolder") or Instance.new("Folder")
+		if enabled == false then
+			holder:Destroy()
+		end
+
+		if holder.Name == "Folder" then
+			holder.Name = "ESPHolder"
+			holder.Parent = game.CoreGui
+		end
+
+		if uselocalplayer == false and holder:FindFirstChild(game.Players.LocalPlayer.Name) then
+			holder:FindFirstChild(game.Players.LocalPlayer.Name):Destroy()
+		end
+
+		if getgenv().enabled == true then 
+			getgenv().enabled = false
+			getgenv().enabled = true
+		end
+		while getgenv().enabled do
+			task.wait()
+			for _,v in pairs(game.Players:GetChildren()) do
+				local chr = v.Character
+				if chr ~= nil then
+					local esp = holder:FindFirstChild(v.Name) or Instance.new("Highlight")
+					esp.Name = v.Name
+					if uselocalplayer == false and esp.Name == game.Players.LocalPlayer.Name then
+					else
+						esp.Parent = holder
+						if filluseteamcolor then
+							esp.FillColor = v.TeamColor.Color
+						else
+							esp.FillColor = fillcolor 
+						end
+						if outlineuseteamcolor then
+							esp.OutlineColor = v.TeamColor.Color
+						else
+							esp.OutlineColor = outlinecolor    
+						end
+						esp.FillTransparency = filltrans
+						esp.OutlineTransparency = outlinetrans
+						esp.Adornee = chr
+						esp.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+					end
+				end
+			end
+		end
+	end
+	task.wait()
+end)
+
+Section:NewButton("refresh esp", "", function()
+	getgenv().enabled = false
+
+	getgenv().enabled = true
+end)
+
+
+
+local Tab = Window:NewTab("Misc")
+local Section = Tab:NewSection("Misc")
+Section:NewSlider("Camera FoV", "", 120, 70, function(a) -- 500 (MaxValue) | 0 (MinValue)
+	game:GetService'Workspace'.Camera.FieldOfView = a
+
+end)
+
+Section:NewSlider("Walkspeed", "", 1000, 0, function(t) -- 500 (MaxValue) | 0 (MinValue)
+	spawn(function()
+		while true do
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = t
+			wait()
+		end
+	end)
+end)
+Section:NewSlider("Jumppower", "", 1000, 0, function(f) -- 500 (MaxValue) | 0 (MinValue)
+	game.Players.LocalPlayer.Character.Humanoid.JumpPower = f
+end)
+Section:NewButton("spin bot", "", function()
+	spawn(function()
+		local Character = game.Players.LocalPlayer.Character
+		while wait() do
+			Character.HumanoidRootPart.CFrame = Character.HumanoidRootPart.CFrame * CFrame.Angles(0, math.random(-1000, 1000), 0)
+		end
+	end)
+end)
+
+
+Section:NewButton("teleport tool", "", function()
+	local mouse = game.Players.LocalPlayer:GetMouse()
+	tool = Instance.new("Tool", game.Players.LocalPlayer.Backpack)
+	tool.Name = "Teleport Tool"
+	tool.RequiresHandle = false
+	tool.Activated:Connect(function()
+		local pos = mouse.Hit
+		pos = CFrame.new(pos.X,pos.Y,pos.Z) +Vector3.new(0,2.5,0)
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+	end)
+end)
+Section:NewKeybind("Teleport to a random player", "", Enum.KeyCode.F, function()
+	local randomPlayer = game.Players:GetPlayers()
+	[math.random(1,#game.Players:GetPlayers())]
+
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(randomPlayer.Character.Head.Position.X, randomPlayer.Character.Head.Position.Y, randomPlayer.Character.Head.Position.Z))
+end)
+Section:NewTextBox("Tp to player", "", function(target)
+	local p1 = game.Players.LocalPlayer.Character.HumanoidRootPart
+	local p2 = target
+	p1.CFrame = game.Players[p2].Character.HumanoidRootPart.CFrame
+end)
+Section:NewButton("afk", "ButtonInfo", function()
+	while wait() do
+		local pos = CFrame.new(math.random(-1000, 1000),1000,math.random(-1000, 1000))
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
+	end
+end)
+Section:NewKeybind("save pos", "", Enum.KeyCode.Y, function()
+	LPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+end)
+
+
+Section:NewKeybind("load pos", "", Enum.KeyCode.T, function()
+	game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = LPos
+end)
+
+
+
+
+
+
+
+--aimbot script - https://raw.githubusercontent.com/Exunys/Aimbot-Script/main/Aimbot%20Script.lua
+
+--highlight esp - https://v3rmillion.net/showthread.php?tid=1170874
+
+---------------------------
+local pos = Vector3.new(0, -999999, 0)
+local lookAt = Vector3.new(0, 0, 0)
+local cameraCFrame = CFrame.new(pos, lookAt)
+workspace.CurrentCamera.CFrame = cameraCFrame
