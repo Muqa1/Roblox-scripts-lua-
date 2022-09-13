@@ -1,0 +1,57 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Muqas local player chams gui", "DarkTheme")
+local Tab = Window:NewTab("Chams")
+local Section = Tab:NewSection("Chams")
+_G.master = true
+Section:NewButton("Local player chams", "", function()
+	while true do
+		local char = game.Players.LocalPlayer.Character
+		local parts = char:GetDescendants()
+		if true then
+			for i, v in pairs(parts) do
+				if v:IsA("BasePart") then
+					v.Material = "ForceField"
+					v.Color = Color3.new(1, 0, 0.34902)
+				end
+			end
+		end
+		wait(1)
+	end
+end)
+Section:NewTextBox("Add friend chams", "", function(friend)
+	while _G.master == true do
+		local char = game.Players:FindFirstChild(friend).Character
+		local parts = char:GetDescendants()
+		if true then
+			for i, v in pairs(parts) do
+				if v:IsA("BasePart") then
+					v.Material = "ForceField"
+					v.Color = Color3.new(0, 1, 0)
+				end
+			end
+		end
+		wait(1)
+	end
+end)
+
+Section:NewTextBox("TextboxText", "", function(enemy)
+	while _G.master == true do
+		local char = game.Players:FindFirstChild(enemy).Character
+		local parts = char:GetDescendants()
+		if true then
+			for i, v in pairs(parts) do
+				if v:IsA("BasePart") then
+					v.Material = "ForceField"
+					v.Color = Color3.new(1, 0, 0)
+				end
+			end
+		end
+		wait(1)
+	end
+end)
+
+Section:NewButton("Debug all chams", "", function()
+	_G.master = false
+	wait(.5)
+	_G.master = true
+end)
