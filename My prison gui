@@ -16,6 +16,10 @@ end
 
 if keyIsValid then
     
+    if game.PlaceId ~= 10118504428 then
+        game.Players.LocalPlayer:Kick("Unsupported game")
+    end
+    
     wait(1)
     
     game.StarterGui:SetCore("SendNotification", {
