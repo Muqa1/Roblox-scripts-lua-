@@ -1,0 +1,114 @@
+local validKeys = { 
+"QGJlc3RjbGFuXzMyIG9uIHBhcmltIGZvcnRuYWlkaSBrbGFu",
+"bWEgdmloa2FuIG5laWQgaW5pbWVuc2kga2VzIGVpIG9sZSBiZXN0Y2xhbiAzMg=="
+}
+
+
+local keyIsValid = false
+
+local keyIsValid = false
+for _, validKey in pairs(validKeys) do
+  if key == validKey then
+    keyIsValid = true
+    break
+  end
+end
+
+if keyIsValid then
+    
+    wait(1)
+    
+    game.StarterGui:SetCore("SendNotification", {
+	Title = "My Prison",
+	Text = "Script has been executed"
+})
+
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("My Prison", "Midnight")
+local Tab = Window:NewTab("Main")
+local Section = Tab:NewSection("Main")
+
+Section:NewButton("Arrest closest npc", "Attemps to teleport and arrest the closest npc to you", function()
+    
+local npcs = workspace.NPCs:GetChildren()
+local closestNPC
+local minDistance = math.huge
+
+for _, robber in pairs(npcs) do 
+  local distance = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - robber.UpperTorso.Position).Magnitude
+  if distance < minDistance then
+    minDistance = distance
+    closestNPC = robber
+  end
+end
+
+if closestNPC then
+  local npc = closestNPC.UpperTorso.CFrame
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npc
+
+  local num = tonumber(string.sub(closestNPC.Name, string.find(closestNPC.Name, "%d+")))
+  local args = {
+    [1] = num,
+    [2] = "PromptTriggered"
+  }
+
+  game:GetService("ReplicatedStorage").Remote.NPC.Interact:FireServer(unpack(args))
+  
+  
+end
+
+end)
+
+Section:NewButton("Anti AFK", "Prevents the game from kicking you for being AFK", function()
+    
+    game.StarterGui:SetCore("SendNotification", {
+	Title = "My Prison",
+	Text = "Anti Afk has been activated"
+})
+    
+local antiAFK=game:service'VirtualUser'
+
+game:service'Players'.LocalPlayer.Idled:connect(function()
+antiAFK:CaptureController()
+antiAFK:ClickButton2(Vector2.new())
+end)
+
+end)
+
+
+
+Section:NewToggle("Noclip", "Lets you walk through walls", function(state)
+    if state then
+        
+    Clip = false
+	wait(0.1)
+	local function NoclipLoop()
+		if Clip == false and game.Players.LocalPlayer.Character ~= nil then
+			for _, child in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+				if child:IsA("BasePart") and child.CanCollide == true and child.Name ~= floatName then
+					child.CanCollide = false
+				end
+			end
+		end
+	end
+	Noclipping = game:GetService("RunService").Stepped:Connect(NoclipLoop)
+	
+    else
+        if Noclipping then
+		Noclipping:Disconnect()
+	end
+	Clip = true
+    end
+end)
+
+Section:NewSlider("WalkSpeed", "deafult is 16", 19, 0, function(s)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+Section:NewSlider("JumpPower", "", 25, 0, function(d)
+    game.Players.LocalPlayer.Character.Humanoid.JumpHeight = d
+end)
+
+else 
+    game.Players.LocalPlayer:Kick("Authentication failed")
+end
