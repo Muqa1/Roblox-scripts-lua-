@@ -22,8 +22,6 @@ if keyIsValid then
         game.Players.LocalPlayer:Kick("Unsupported game")
     end
     
-    wait(1)
-    
     game.StarterGui:SetCore("SendNotification", {
 	Title = "My Prison",
 	Text = "Script has been executed"
@@ -33,6 +31,28 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHept
 local Window = Library.CreateLib("My Prison", "Midnight")
 local Tab = Window:NewTab("Main")
 local Section = Tab:NewSection("Main")
+
+
+local function fireproximityprompt(Obj, Amount, Skip)
+    if Obj.ClassName == "ProximityPrompt" then 
+        Amount = Amount or 1
+        local PromptTime = Obj.HoldDuration
+        if Skip then 
+            Obj.HoldDuration = 0
+        end
+        for i = 1, Amount do 
+            Obj:InputHoldBegin()
+            if not Skip then 
+                wait(Obj.HoldDuration)
+            end
+            Obj:InputHoldEnd()
+        end
+        Obj.HoldDuration = PromptTime
+    else 
+        error("userdata<ProximityPrompt> expected")
+    end
+end
+
 
 Section:NewButton("Arrest closest npc", "Attemps to teleport and arrest the closest npc to you", function()
     
@@ -62,6 +82,92 @@ if closestNPC then
   
   
 end
+
+end)
+
+Section:NewButton("Arrest npc, then tp back to ur car", "", function()
+local npcs = workspace.NPCs:GetChildren()
+local closestNPC
+local minDistance = math.huge
+
+for _, robber in pairs(npcs) do 
+  local distance = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - robber.UpperTorso.Position).Magnitude
+  if distance < minDistance then
+    minDistance = distance
+    closestNPC = robber
+  end
+end
+
+if closestNPC then
+  local npc = closestNPC.UpperTorso.CFrame
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = npc
+
+  local num = tonumber(string.sub(closestNPC.Name, string.find(closestNPC.Name, "%d+")))
+  local args = {
+    [1] = num,
+    [2] = "PromptTriggered"
+  }
+
+  game:GetService("ReplicatedStorage").Remote.NPC.Interact:FireServer(unpack(args))
+  
+  
+end
+
+
+
+
+local player = game:GetService("Players").LocalPlayer
+
+
+local workspace = game:GetService("Workspace")
+
+
+local carsFolder = workspace.CARS
+
+
+local playerCars = {}
+
+
+for _, car in pairs(carsFolder:GetChildren()) do
+    
+    local ownerText = car.CarCapacity.Frame.OwnerText
+    
+    local text = ownerText.Text
+    
+    if string.find(text, player.Name) then
+        table.insert(playerCars, car)
+    end
+end
+
+if #playerCars > 0 then
+    local closestCar = playerCars[1]
+    local closestDistance = (closestCar.NpcsAdd.Position - player.Character.HumanoidRootPart.Position).Magnitude
+    
+    for _, car in ipairs(playerCars) do
+        local distance = (car.NpcsAdd.Position - player.Character.HumanoidRootPart.Position).Magnitude
+        
+        if distance < closestDistance then
+            closestCar = car
+            closestDistance = distance
+        end
+    end
+    
+    player.Character.HumanoidRootPart.CFrame = closestCar.NpcsAdd.CFrame
+end
+
+
+fireproximityprompt(game:GetService("Workspace").CARS.SWATCar.NpcsAdd.ProximityPrompt, 1, true)
+
+end)
+
+Section:NewButton("Release the criminal (button must be visible)", "", function()
+    fireproximityprompt(game:GetService("Workspace").CARS.SWATCar.NpcsAdd.ProximityPrompt, 1, true)
+    
+local args = {
+    [1] = "Release"
+}
+
+game:GetService("ReplicatedStorage").Remote.NpcHold:FireServer(unpack(args))
 
 end)
 
