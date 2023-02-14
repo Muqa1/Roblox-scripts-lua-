@@ -4,8 +4,8 @@
 local keyIsValid = false
 
 local keyIsValid = false
-for _, validKey in pairs(validKeys) do
-  if _G.key == validKey then
+for _, validKey in pairs(_G.validKeys) do
+  if _G.key == _G.validKey then
     keyIsValid = true
     break
   end
