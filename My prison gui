@@ -1,7 +1,4 @@
-local validKeys = { 
-"QGJlc3RjbGFuXzMyIG9uIHBhcmltIGZvcnRuYWlkaSBrbGFu",
-"bWEgdmloa2FuIG5laWQgaW5pbWVuc2kga2VzIGVpIG9sZSBiZXN0Y2xhbiAzMg=="
-}
+
 
 
 local keyIsValid = false
