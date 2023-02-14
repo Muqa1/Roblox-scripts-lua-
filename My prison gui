@@ -1,11 +1,16 @@
-
+local validKeys = { 
+"QGJlc3RjbGFuXzMyIG9uIHBhcmltIGZvcnRuYWlkaSBrbGFu",
+"bWEgdmloa2FuIG5laWQgaW5pbWVuc2kga2VzIGVpIG9sZSBiZXN0Y2xhbiAzMg==",
+"bWEgb2xlbiBwZXRlIGt1bmEgZWkgb2xlIDMyIGNsYW4gT04gVE9w",
+"bWEgZWkgdGVhIG1pZGEgc2lpYSBraXJqdXRhZGEgbE9PT09PT09PT09M"
+}
 
 
 local keyIsValid = false
 
 local keyIsValid = false
-for _, validKey in pairs(_G.validKeys) do
-  if _G.key == _G.validKey then
+for _, validKey in pairs(validKeys) do
+  if _G.key == validKey then
     keyIsValid = true
     break
   end
