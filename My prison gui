@@ -5,6 +5,10 @@ local validKeys = {
 "bWEgZWkgdGVhIG1pZGEgc2lpYSBraXJqdXRhZGEgbE9PT09PT09PT09M"
 }
 
+local beta_hwids = {
+    "3DEA45F6-3FBB-48E3-9C40-FB24B267925B"
+}
+
 
 local keyIsValid = false
 
@@ -21,6 +25,8 @@ if keyIsValid then
     if game.PlaceId ~= 10118504428 then
         game.Players.LocalPlayer:Kick("Unsupported game")
     end
+    
+    print("My prison GUI loaded!")
     
     game.StarterGui:SetCore("SendNotification", {
 	Title = "My Prison",
@@ -171,21 +177,24 @@ game:GetService("ReplicatedStorage").Remote.NpcHold:FireServer(unpack(args))
 
 end)
 
+
 Section:NewButton("Anti AFK", "Prevents the game from kicking you for being AFK", function()
+    
+    
     
     game.StarterGui:SetCore("SendNotification", {
 	Title = "My Prison",
 	Text = "Anti Afk has been activated"
 })
     
-local antiAFK=game:service'VirtualUser'
+local antiAFK = game:service'VirtualUser'
 
 game:service'Players'.LocalPlayer.Idled:connect(function()
 antiAFK:CaptureController()
 antiAFK:ClickButton2(Vector2.new())
 end)
-
 end)
+
 
 
 
@@ -220,6 +229,25 @@ end)
 Section:NewSlider("JumpPower", "", 25, 0, function(d)
     game.Players.LocalPlayer.Character.Humanoid.JumpHeight = d
 end)
+
+hwid = game.RbxAnalyticsService:GetClientId()
+
+local beta = false
+
+local beta = false
+for _, betaHWID in pairs(beta_hwids) do
+  if hwid == betaHWID then
+    beta = true
+    break
+  end
+end
+
+if beta then
+    wait(1)
+    print("Beta user detected!")
+    local Tab = Window:NewTab("Beta")
+
+end
 
 else 
     game.Players.LocalPlayer:Kick("Authentication failed")
