@@ -1,25 +1,30 @@
 local health_bar = true
 local box = true
 local name = true
+local team_color = true
 
 local player = game.Players.LocalPlayer
 local players = {} 
 local core = game:GetService("CoreGui")
 
-local function CreateBillboard(adornee, playerName, playerHealth, playerMaxHealth)
+local function CreateBillboard(adornee, playerName, playerHealth, playerMaxHealth, playerTeamColor)
     local billboard = Instance.new("BillboardGui")
     billboard.Name = "E"
     
     billboard.AlwaysOnTop = true
     billboard.Size = UDim2.new(4, 0, 6.5, 0) 
-    billboard.StudsOffset = Vector3.new(0, -1.5, 0)
+    billboard.StudsOffset = Vector3.new(0, -0.5, 0)
     billboard.Adornee = adornee
 
     billboard.Parent = core
     
     if box then
         local frame = Instance.new("Frame")
-        frame.BackgroundColor3 = Color3.new(0, 0, 0)
+        if team_color then
+            frame.BackgroundColor3 = playerTeamColor.Color
+        else
+            frame.BackgroundColor3 = Color3.new(0, 0, 0)
+        end
         frame.BackgroundTransparency = 0.35
         frame.BorderSizePixel = 1
         frame.BorderColor3 = Color3.new(1, 1, 1)
@@ -41,7 +46,7 @@ local function CreateBillboard(adornee, playerName, playerHealth, playerMaxHealt
         local nameLabel = Instance.new("TextLabel")
         nameLabel.BackgroundTransparency = 1
         nameLabel.Text = playerName
-        nameLabel.Font = Enum.Font.SourceSansBold
+        nameLabel.Font = Enum.Font.Code
         nameLabel.TextColor3 = Color3.new(1, 1, 1)
         nameLabel.TextSize = 12
         nameLabel.Position = UDim2.new(0, 0, 0, 0)
@@ -75,12 +80,13 @@ local function InsertBillboardToPlayers()
             v:Destroy()
         end
     end
-    local allPlayers = game.Players:GetPlayers()
+    local allPlayers = GetEnemyPlayers() -- game.Players:GetPlayers()
     for i,v in pairs(allPlayers) do
         local health = v.Character and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.Health or 0
         local maxHealth = v.Character and v.Character:FindFirstChild("Humanoid") and v.Character.Humanoid.MaxHealth or 1
+        local teamColor = v.TeamColor -- Get the player's team color
         if health/maxHealth ~= 0 and v ~= game.Players.LocalPlayer then
-            CreateBillboard(v.Character and v.Character:FindFirstChild("Head"), v.Name, health, maxHealth)
+            CreateBillboard(v.Character and v.Character:FindFirstChild("HumanoidRootPart"), v.Name, health, maxHealth, teamColor)
         end
     end
 end
@@ -104,4 +110,5 @@ end)
 local function UpdateBillboards()
     InsertBillboardToPlayers()
 end
+
 game:GetService("RunService").Heartbeat:Connect(UpdateBillboards)
