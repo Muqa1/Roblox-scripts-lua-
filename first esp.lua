@@ -65,7 +65,6 @@ local function CreateOutline(character, adornee, teamColor)
         return
     end
 
-    -- Remove existing highlights
     for _, highlight in pairs(adornee:GetChildren()) do
         if highlight:IsA("Highlight") then
             highlight:Destroy()
@@ -84,7 +83,6 @@ local function CreateOutline(character, adornee, teamColor)
         highlight.OutlineColor = Color3.new(1,1,1)
     end
 end
-
 
 local function GetEnemyPlayers()
     players = {}
@@ -121,28 +119,19 @@ local function InsertBillboardToPlayers()
         if health/maxHealth ~= 0 and v ~= game.Players.LocalPlayer then
             CreateBillboard(v.Character and v.Character:FindFirstChild("HumanoidRootPart"), v.Name, health, maxHealth, teamColor)
             if outline then
-                -- for _, h in pairs(v.Character:FindFirstChild("HumanoidRootPart"):GetChildren()) do 
-                --     if h.Name == "HighlightMuqer" then 
-                --         h:Destroy()
-                --     end
-                -- end
                 CreateOutline(v.Character, v.Character:FindFirstChild("HumanoidRootPart"), teamColor)
             end
         end
     end
 end
-
 InsertBillboardToPlayers()
-
 while wait(1) do 
     InsertBillboardToPlayers()
 end
-
 game.Players.PlayerAdded:Connect(function(plr)
     plr.CharacterAdded:Wait()
     InsertBillboardToPlayers()
 end)
-
 game.Players.PlayerRemoving:Connect(function(plr)
     plr.CharacterRemoving:Wait()
     InsertBillboardToPlayers()
