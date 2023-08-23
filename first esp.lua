@@ -2,7 +2,7 @@ local health_bar = true
 local box = true
 local name = true
 local team_color = true
-local enemy_only = false
+local enemy_only = true
 local outline = false
 local chams = false
 
@@ -42,18 +42,24 @@ local function CreateBillboard(adornee, playerName, playerHealth, playerMaxHealt
         local healthBar = Instance.new("Frame")
         healthBar.BackgroundColor3 = Color3.new(0, 1, 0) 
         healthBar.BorderSizePixel = 1
-        healthBar.Size = UDim2.new(0, 2, playerHealth / playerMaxHealth, 1)
+        healthBar.Size = UDim2.new(0, 2, 1, 0)
         healthBar.Parent = billboard
+
+        local healthBar2 = Instance.new("Frame")
+        healthBar2.BackgroundColor3 = Color3.new(0, 0, 0) 
+        healthBar2.BorderSizePixel = 0
+        healthBar2.Size = UDim2.new(0, 2, 1 - playerHealth / playerMaxHealth, 0)
+        healthBar2.Parent = healthBar
     end
 
     if name then
         local nameLabel = Instance.new("TextLabel")
         nameLabel.BackgroundTransparency = 1
         nameLabel.Text = playerName
-        nameLabel.Font = Enum.Font.Arcade
+        nameLabel.Font = Enum.Font.SourceSans
         nameLabel.TextColor3 = Color3.new(1, 1, 1)
-        nameLabel.TextSize = 12
-        nameLabel.TextStrokeTransparency = 0.000
+        nameLabel.TextSize = 14
+        nameLabel.TextStrokeTransparency = 0.300
         nameLabel.Position = UDim2.new(0, 0, -0.5, 0)
         nameLabel.Size = UDim2.new(1, 0, 1, 0)
 
@@ -156,7 +162,7 @@ local function InsertBillboardToPlayers()
     end
 end
 InsertBillboardToPlayers()
-while wait(1) do 
+while wait() do 
     InsertBillboardToPlayers()
 end
 game.Players.PlayerAdded:Connect(function(plr)
