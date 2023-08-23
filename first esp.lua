@@ -3,7 +3,8 @@ local box = true
 local name = true
 local team_color = true
 local enemy_only = false
-local outline = true
+local outline = false
+local chams = false
 
 local player = game.Players.LocalPlayer
 local players = {} 
@@ -84,6 +85,33 @@ local function CreateOutline(character, adornee, teamColor)
     end
 end
 
+local function CreateChams(character, adornee, teamColor)
+    if not adornee or not adornee:IsA("BasePart") then
+        return
+    end
+
+    for _, BodyPart in pairs(character:GetDescendants()) do
+        if BodyPart:IsA("BasePart") then
+            if BodyPart.Material == "ForceField" then
+                return
+            end
+            return
+        end
+    end
+
+
+    for _, BodyPart in pairs(character:GetDescendants()) do
+        if BodyPart:IsA("BasePart") then
+            BodyPart.Material = "ForceField"
+            if team_color then 
+                BodyPart.Color = teamColor.Color 
+            else
+                BodyPart.Color = Color3.new(1,1,1)
+            end 
+        end
+    end
+end
+
 local function GetEnemyPlayers()
     players = {}
     if #game:GetService("Teams"):GetTeams() > 0 then
@@ -120,6 +148,9 @@ local function InsertBillboardToPlayers()
             CreateBillboard(v.Character and v.Character:FindFirstChild("HumanoidRootPart"), v.Name, health, maxHealth, teamColor)
             if outline then
                 CreateOutline(v.Character, v.Character:FindFirstChild("HumanoidRootPart"), teamColor)
+            end
+            if chams then 
+                CreateChams(v.Character, v.Character:FindFirstChild("HumanoidRootPart"), teamColor)
             end
         end
     end
