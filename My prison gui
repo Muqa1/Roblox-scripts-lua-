@@ -6,7 +6,7 @@ local validKeys = {
 }
 
 local beta_hwids = {
-    "3DEA45F6-3FBB-48E3-9C40-FB24B267925B"
+    " "
 }
 
 
